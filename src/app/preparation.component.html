@@ -1,0 +1,70 @@
+<div class="container" [hidden]="hidden">
+	<h3>Форма 3</h3>
+	<p>Осталось добавить {{valuePreparation}} препаратов</p>
+	<form (ngSubmit)="onSubmit()" #preparationForm="ngForm">
+		{{diagnostic}}
+		<div class="form-group">
+			<label for="MNN">МНН препарата</label>
+			<input type="text" class="form-control" name="MNN" required [(ngModel)]="preparation.MNN" #MNN="ngModel">
+			<div [hidden]="MNN.valid || MNN.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+		<div *ngIf="profitable" class="form-group">
+			<label for="komerceName">Коммерческое наименование препарата</label>
+			<input type="text" class="form-control" name="komerceName" required [(ngModel)]="preparation.komerceName" #komerceName="ngModel">
+			<div [hidden]="komerceName.valid || komerceName.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+		<div class="form-group">
+			<label for="valueApplicationPreparation">Количество применений препарата, событий в сутки</label>
+			<input type="number" class="form-control" name="valueApplicationPreparation" required [(ngModel)]="preparation.valueApplicationPreparation" #valueApplicationPreparation="ngModel" step="any">
+			<div [hidden]="valueApplicationPreparation.valid || valueApplicationPreparation.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+		<div class="form-group">
+			<label for="dose">Разовая доза примененного препарата, в используемых единицах</label>
+			<input type="number" class="form-control" name="dose" required [(ngModel)]="preparation.dose" #dose="ngModel" step="any">
+			<div [hidden]="dose.valid || dose.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+		<div class="form-group">
+			<label for="maxValueApplicationPreparation">Максимально допустимая количество применений препарата, событий в сутки</label>
+			<input type="number" class="form-control" name="maxValueApplicationPreparation" required [(ngModel)]="preparation.maxValueApplicationPreparation" #maxValueApplicationPreparation="ngModel" step="any">
+			<div [hidden]="maxValueApplicationPreparation.valid || maxValueApplicationPreparation.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+		<div class="form-group">
+			<label for="maxDose">Максимально допустимая разовая доза примененного препарата, в используемых единицах</label>
+			<input type="number" class="form-control" name="maxDose" required [(ngModel)]="preparation.maxDose" #maxDose="ngModel" step="any">
+			<div [hidden]="maxDose.valid || maxDose.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+		<div *ngIf="profitable" class="form-group">
+			<label for="price">Цена упаковки препарата, рублей</label>
+			<input type="number" class="form-control" name="price" required [(ngModel)]="preparation.price" #price="ngModel" step="any">
+			<div [hidden]="price.valid || price.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+
+		<div *ngIf="profitable" class="form-group">
+			<label for="valueInDose">Количество действующего вещества в отдельной дозе препарата, в используемых единицах</label>
+			<input type="number" class="form-control" name="valueInDose" required [(ngModel)]="preparation.valueInDose" #valueInDose="ngModel" step="any">
+			<div [hidden]="valueInDose.valid || valueInDose.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+		<div *ngIf="profitable" class="form-group">
+			<label for="valueInDoseDay">Количество действующего вещества в применяемой суточной дозе препарата в используемых единицах</label>
+			<input type="number" class="form-control" name="valueInDose" required [(ngModel)]="preparation.valueInDoseDay" #valueInDoseDay="ngModel" step="any">
+			<div [hidden]="valueInDoseDay.valid || valueInDoseDay.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+
+		<div *ngIf="profitable" class="form-group">
+			<label for="valueDoseInPack">Количество отдельных доз в упаковке препарата, единиц</label>
+			<input type="number" class="form-control" name="valueDoseInPack" required [(ngModel)]="preparation.valueDoseInPack" #valueDoseInPack="ngModel" step="any">
+			<div [hidden]="valueDoseInPack.valid || valueDoseInPack.pristline" class="alert alert-danger">Обязательное поле</div>
+		</div>
+		<button [disabled]="!preparationForm.form.valid" type="submit" class="btn btn-success">Продолжить</button>
+		<button type="submit" class="btn btn-success">Пропустить этот раздел и продолжить</button>
+	</form>
+</div>
+<intervention [hidden]="sentHidden" [valueIntervention1]="valueIntervention1" [profitable]="profitable"></intervention>

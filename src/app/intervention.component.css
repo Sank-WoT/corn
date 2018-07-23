@@ -1,0 +1,11 @@
+.ng-valid[required], .nf-valid.reqired {
+	border-left: 5px solid #42A948;
+}
+
+.ng-invalid:not(form) {
+	border-left: 5px solid #a94442;
+}
+
+.btn-success {
+	margin-right: 24px;
+}
