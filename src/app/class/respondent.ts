@@ -7,7 +7,7 @@ export class Respondent implements IRespondent {
 	age: number;
 	height: number;
 	weight: number;
-	_id: number;
+	_id: string;
 	constructor(
 	region: string,
 	settlemen: string,

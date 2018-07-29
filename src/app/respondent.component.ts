@@ -18,7 +18,7 @@ import { ServerService } from "./services/dataServicePost";
 export class RespondentComponent {
   constructor(private dataSetvice: DataServiceRespondent, private serverService: ServerService){
   }
-  sexs = ['Male', 'Female'];
+  sexs = ['М', 'Ж'];
   sentShow = true;
   hidden: boolean = false;
   respondent: Respondent;
@@ -30,8 +30,8 @@ export class RespondentComponent {
   }
 
   onSubmit() {
-    this.serverService.setRespondent(this.respondent).subscribe(respondent => console.log(respondent));
-  	this.hidden = true; 
+    this.serverService.setRespondent(this.respondent).subscribe(answer => {this.respondent._id = answer._id; console.log(this.respondent._id)});
+  	this.hidden = true; 0
   	this.sentShow = false;
     this.dataSetvice.setData(this.respondent);
    }

@@ -25,7 +25,6 @@ export class ServerService {
 	}
 
 	setRespondent (respondent: Respondent): Observable<Respondent> {
-		console.log(respondent);
     	return this.http.post<Respondent>("http://localhost:3000/apit", respondent, httpOptions)
     	.pipe(
     	);
@@ -54,7 +53,7 @@ export class ServerService {
 
 	setResult (result: ResultPost): Observable<ResultPost> {
 		console.log(result);
-    	return this.http.post<ResultPost>("http://localhost:3000/api/result/", ResultPost, httpOptions)
+    	return this.http.post<ResultPost>("http://localhost:3000/api/res", result, httpOptions)
     	.pipe(
     	);
 	} 

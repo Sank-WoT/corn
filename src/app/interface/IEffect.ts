@@ -6,4 +6,5 @@ export interface IEffect {
 	sPos: number;
 	valuePreparation: number;
 	valueNoPreparation: number;
+	id: string;
 }

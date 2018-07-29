@@ -6,6 +6,7 @@ export class Intervention implements IIntervention {
 	refereceValueIntervention: number;
 	price: number;
 	priceReference: number;
+	id: string;
 	constructor(
 		nameIntervention: string,
 		kommerceNameIntervention: string,

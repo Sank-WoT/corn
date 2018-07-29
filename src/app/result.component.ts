@@ -25,7 +25,7 @@ export class ResultComponent {
 	IM: number = 0;
 	frugality: number = 0;
 	F: number = 0;
-	FAll: number = 0;
+	allF: number = 0;
 	hidden: boolean = true;
 	result = new Result(0, 0, 0);
 	allPreparation: Preparation[] = [];
@@ -45,22 +45,34 @@ export class ResultComponent {
 	}
 	
 	ngOnInit() {
+		this.respondent = this.dataServiceRespondent.getData();
 		this.allPreparation = this.dataServicePreparation.getData();
 		this.allIntervention = this.dataServiceIntervention.getData();
 		this.effect = this.dataServiceEffect.getData();
-		this.respondent = this.dataServiceRespondent.getData();
+		this.effect.id = this.respondent._id;
 	}
 
 	resultVal() {
+		// добавить id во все препараты
+		for (var i = 0; i < this.allPreparation.length; ++i) {
+			this.allPreparation[i].id = this.respondent._id;
+		}
+		// добавить id во все вмешательства
+		for (var i = 0; i < this.allIntervention.length; ++i) {
+			this.allIntervention[i].id = this.respondent._id;
+		}
+		console.log(this.allPreparation[0]);
 		//alculation
 		this.resultSumOnPreparation();
 		this.resultSumOnIntervention();
 		this.utility = this.resultUtility(this.effect.oNeg, this.effect.sNeg, this.effect.oPos, this.effect.sPos);
 		this.IM = this.resultIM(this.Info, this.M);
-		this.FAll = this.resultFAll(this.F, this.frugality);
+		this.allF = this.resultFAll(this.F, this.frugality);
 		this.res.resultBaseRationality(this.effect.effect, this.utility, this.M);
-		this.res.resultAdvantage(this.res.baseRationality, this.FAll);
-		this.res.resultRationality(this.result.baseRationality);
+		this.res.resultAdvantage(this.res.baseRationality, this.allF);
+		this.res.resultRationality(this.res.baseRationality);
+		// добавить id
+		this.res.id = this.respondent._id;
 		this.Info /= this.resultMed(this.Info, this.allPreparation.length);
 		this.frugality /= this.resultMed(this.frugality, this.allPreparation.length);
 		this.M /= this.resultMed(this.M, this.allPreparation.length);

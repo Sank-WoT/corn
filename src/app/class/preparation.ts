@@ -10,6 +10,7 @@ export class Preparation implements IPreparation {
 	valueInDose: number;
 	valueInDoseDay: number;
 	valueDoseInPack: number;
+	id: string;
 	constructor(
 		MNN: string,
 		komerceName: string,

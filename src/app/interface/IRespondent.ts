@@ -6,4 +6,5 @@ export interface IRespondent {
 	age: number;
 	height: number;
 	weight: number;
+	id: string;
 }

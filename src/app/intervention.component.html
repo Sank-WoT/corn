@@ -6,42 +6,35 @@
 		<div class="form-group">
 			<label for="nameIntervention">Наименование вмешательства</label>
 			<input type="text" class="form-control" name="nameIntervention" required [(ngModel)]="intervention.nameIntervention" #nameIntervention="ngModel">
-			<div [hidden]="nameIntervention.valid || nameIntervention.pristline" class="alert alert-danger">Обязательное поле</div>
 		</div>
 
 		<div *ngIf="profitable" class="form-group">
 			<label for="kommerceNameIntervention">Коммерческое наименование вмешательства (при наличии)</label>
 			<input type="text" class="form-control" name="kommerceNameIntervention" required [(ngModel)]="intervention.kommerceNameIntervention" #kommerceNameIntervention="ngModel">
-			<div [hidden]="kommerceNameIntervention.valid || kommerceNameIntervention.pristline" class="alert alert-danger">Обязательное поле</div>
 		</div>
 
 		<div class="form-group">
 			<label for="valueIntervention">Количество применений нелекарственного вмешательства, событий всего</label>
 			<input type="number" step="any" class="form-control" name="valueIntervention" required [(ngModel)]="intervention.valueIntervention" #valueIntervention="ngModel">
-			<div [hidden]="valueIntervention.valid || valueIntervention.pristline" class="alert alert-danger">Обязательное поле</div>
 		</div>
 
 		<div class="form-group">
 			<label for="refereceValueIntervention">Эталонное (установленное) количество применений нелекарственного вмешатльства</label>
 			<input type="number" step="any" class="form-control" name="refereceValueIntervention" required [(ngModel)]="intervention.refereceValueIntervention" #refereceValueIntervention="ngModel">
-			<div [hidden]="refereceValueIntervention.valid || refereceValueIntervention.pristline" class="alert alert-danger">Обязательное поле</div>
 		</div>
 
 		<div *ngIf="profitable" class="form-group">
 			<label for="price">Цена фактического количества применений конкретного нелекарственного вмешательства, рублей</label>
 			<input type="number" step="any" class="form-control" name="price" required [(ngModel)]="intervention.price" #price="ngModel">
-			<div [hidden]="price.valid || price.pristline" class="alert alert-danger">
-			Обязательное поле</div>
 		</div>
 
 		<div *ngIf="profitable" class="form-group">
 			<label for="priceReference">Цена эталонного (установленного) количества применений нелекарственного вмешательства, рублей</label>
 			<input type="number" step="any" class="form-control" name="priceReference" required [(ngModel)]="intervention.priceReference" #priceReference="ngModel">
-			<div [hidden]="priceReference.valid || priceReference.pristline" class="alert alert-danger"> Обязательное поле</div>
 		</div>
 
 		<button  [disabled]="!interventionForm.form.valid" type="submit" class="btn btn-success">Продолжить</button>
-		<button   type="submit" class="btn btn-success">Пропустить этот раздел и продолжить</button>
+		<button type="submit" class="btn btn-success">Пропустить этот раздел и продолжить</button>
 	</form>
 </div>
 <result #ResultComponent [hidden]="sentHidden"></result>

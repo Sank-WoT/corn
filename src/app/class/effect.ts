@@ -7,6 +7,7 @@ export class Effect implements IEffect {
 	sPos: number;
 	valuePreparation: number;
 	valueNoPreparation: number;
+	id: string;
 	constructor(
 		effect: number,
 		oNeg: number,

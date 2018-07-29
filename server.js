@@ -67,7 +67,7 @@ var urlencodedParser = bodyParser.urlencoded({extended: false});
 var jsonParser = bodyParser.json()
 var id = uniqid();  
 
-app.post("/api/result", jsonParser, function (request, response) {
+app.post("/api/res", jsonParser, function (request, response) {
     if(!request.body) return response.sendStatus(400);
     var result = mongoose.model('result', resultScheme);
 
@@ -102,8 +102,10 @@ app.post("/apit", jsonParser, function (request, response) {
 	     
 	    if(err) return console.log(err);
 	    console.log("Сохранен объект", respondent);
+	    console.log("ID", respondent._id);
 	});
-    console.log(request.body);;
+    console.log(request.body);
+    return response.send(respondent);
 });
 
 app.post("/api/effect", jsonParser, function (request, response) {
@@ -119,15 +121,14 @@ app.post("/api/effect", jsonParser, function (request, response) {
 		sPos: request.body.sPos,
 		valuePreparation: request.body.valuePreparation,
 		valueNoPreparation: request.body.valueNoPreparation,
-	    id: id
+	    id: request.body.id
 	});
 	effect.save(function(err){
 	    mongoose.disconnect();  // отключение от базы данных
-	     
 	    if(err) return console.log(err);
 	    console.log("Сохранен объект", effect);
 	});
-    console.log(request.body);;
+    console.log(request.body);
 });
 
 app.post("/api/preparation", jsonParser, function (request, response) {
@@ -166,26 +167,6 @@ app.get("/api", function(req, res) {
     // отправляем ответ
     console.log(req.body);
     response.send("<h2>Привет Sank!</h2>");
-    /*mongoose.Promise = global.Promise;
-	mongoose.connect('mongodb://localhost:27017/cor');
-
-	var Respondent = mongoose.model("respondent", userScheme);
-	var respondent = new Respondent({
-	    id: id,
-	    region: "Omsk",
-	    settlemen: "Omsk",
-	    organization: "Sibadi",
-	    sex: "Male",
-	    height: "180",
-	    width: "70"
-	});
-	 
-	respondent.save(function(err){
-	    mongoose.disconnect();  // отключение от базы данных
-	     
-	    if(err) return console.log(err);
-	    console.log("Сохранен объект", respondent);
-	}); */
 });
 
 app.get("/api/get", function(request,response){
@@ -196,13 +177,6 @@ app.get("/", function(request, response){
 	// отправляем ответ
     response.send("<h2>Главная страница</h2>");
 })
-
-app.get("/api/dogs", function(request, response){   
-	response.send({
-		dogs: [{name: 'gav', age: '20'}]
-	});
-	console.log("dogs sent");
-});
 
 app.use(bodyParser.json());
 app.route('/api/dogs').post((req, res) => {

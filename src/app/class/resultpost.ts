@@ -3,6 +3,7 @@ export class ResultPost implements IResultPost {
 	baseRationality: number;
 	rationality: number;
 	advantage: number;
+	id: string;
 	constructor(
 	baseRationality: number,
 	rationality: number,
@@ -21,7 +22,7 @@ export class ResultPost implements IResultPost {
 		this.advantage = (Rb * F) / 2;
 	}
 
-	
+
 	getBaseRationality(): number {
 		return this.baseRationality;
 	}

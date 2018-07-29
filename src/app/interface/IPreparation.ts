@@ -9,4 +9,5 @@ export interface IPreparation {
 	valueInDose: number;
 	valueInDoseDay: number;
 	valueDoseInPack: number;
+	id: string;
 }
