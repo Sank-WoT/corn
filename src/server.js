@@ -62,7 +62,7 @@ var resultScheme = new Schema({
 // для работы с promise
 // определяем обработчик для маршрута "/"
 app.use(express.static(path.join(__dirname, 'public')));
-rlencodedParser = bodyParser.urlencoded({extended: false});
+var urlencodedParser = bodyParser.urlencoded({extended: false});
 var jsonParser = bodyParser.json()
 
 app.post("/api/res", jsonParser, function (request, response) {
@@ -94,9 +94,10 @@ app.get("/", jsonParser, function (request, response) {
 app.post("/apit", jsonParser, function (request, response) {
     if(!request.body) return response.sendStatus(400);
     mongoose.Promise = global.Promise;
-	mongoose.connect('mongodb://localhost:27017/cor', { useNewUrlParser: true });
+	mongoose.connect('mongodb://mongo/cor', { useNewUrlParser: true });
 	var Respondent = mongoose.model("respondent", respondentScheme);
 	var respondent = new Respondent({
+	    id: request.body.id,
 	    region: request.body.region,
 	    settlemen: request.body.settlemen,
 	    organization: request.body.organization,
@@ -112,13 +113,13 @@ app.post("/apit", jsonParser, function (request, response) {
 	    console.log("ID", respondent._id);
 	});
     console.log(request.body);
-    return response.send(respondent._id);
+    return response.send(respondent);
 });
 
 app.post("/api/effect", jsonParser, function (request, response) {
     if(!request.body) return response.sendStatus(400);
     mongoose.Promise = global.Promise;
-	mongoose.connect('mongodb://localhost:27017/cor', { useNewUrlParser: true });
+	mongoose.connect('mongodb://mongo/cor', { useNewUrlParser: true });
 	var Effect = mongoose.model("effect", effectScheme);
 	var effect = new Effect({
 		effect: request.body.effect,
@@ -191,5 +192,5 @@ app.route('/api/dogs').post((req, res) => {
 });
 
 // начинаем прослушивать подключения на 80 порту
-app.listen(3000);
-console.log("server run 3000");
+app.listen(80);
+console.log("server run");

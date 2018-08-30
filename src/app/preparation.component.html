@@ -1,60 +1,64 @@
 <div class="container" [hidden]="hidden">
-	<h3>Форма 3</h3>
-	<p>Осталось добавить {{valuePreparation}} препаратов</p>
 	<form (ngSubmit)="onSubmit()" #preparationForm="ngForm">
-		{{diagnostic}}
-		<div class="form-group">
-			<label for="MNN">МНН препарата</label>
-			<input type="text" class="form-control" name="MNN" required [(ngModel)]="preparation.MNN" #MNN="ngModel">
-		</div>
+		<h3 class="section-title">Данные препарата</h3>
+		<p class="notice" >Осталось добавить {{valuePreparation}}</p>
+		<div class="form__content row">
+			<div class="form-group col-md-6">
+				<label class="form__label" for="MNN">МНН препарата</label>
+				<input type="text" class="form-control" name="MNN" required [(ngModel)]="preparation.MNN" #MNN="ngModel">
+			</div>
 
-		<div *ngIf="profitable" class="form-group">
-			<label for="komerceName">Коммерческое наименование препарата</label>
-			<input type="text" class="form-control" name="komerceName" required [(ngModel)]="preparation.komerceName" #komerceName="ngModel">
-		</div>
+			<div *ngIf="profitable" class="form-group col-md-6">
+				<label class="form__label" for="komerceName">Коммерческое наименование препарата</label>
+				<input type="text" class="form-control" name="komerceName" required [(ngModel)]="preparation.komerceName" #komerceName="ngModel">
+			</div>
 
-		<div class="form-group">
-			<label for="valueApplicationPreparation">Количество применений препарата, событий в сутки</label>
-			<input type="number" class="form-control" name="valueApplicationPreparation" required [(ngModel)]="preparation.valueApplicationPreparation" #valueApplicationPreparation="ngModel" step="any">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="valueApplicationPreparation">Количество применений препарата, событий в сутки</label>
+				<input type="number" class="form-control" name="valueApplicationPreparation" required [(ngModel)]="preparation.valueApplicationPreparation" #valueApplicationPreparation="ngModel" step="any">
+			</div>
 
-		<div class="form-group">
-			<label for="dose">Разовая доза примененного препарата, в используемых единицах</label>
-			<input type="number" class="form-control" name="dose" required [(ngModel)]="preparation.dose" #dose="ngModel" step="any">
-		</div>
+			<div *ngIf="profitable" class="form-group col-md-6">
+				<label class="form__label" for="price">Цена упаковки препарата, рублей</label>
+				<input type="number" class="form-control" name="price" required [(ngModel)]="preparation.price" #price="ngModel" step="any">
+			</div>
 
-		<div class="form-group">
-			<label for="maxValueApplicationPreparation">Максимально допустимая количество применений препарата, событий в сутки</label>
-			<input type="number" class="form-control" name="maxValueApplicationPreparation" required [(ngModel)]="preparation.maxValueApplicationPreparation" #maxValueApplicationPreparation="ngModel" step="any">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="dose">Разовая доза примененного препарата, в используемых единицах</label>
+				<input type="number" class="form-control" name="dose" required [(ngModel)]="preparation.dose" #dose="ngModel" step="any">
+			</div>
 
-		<div class="form-group">
-			<label for="maxDose">Максимально допустимая разовая доза примененного препарата, в используемых единицах</label>
-			<input type="number" class="form-control" name="maxDose" required [(ngModel)]="preparation.maxDose" #maxDose="ngModel" step="any">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="maxValueApplicationPreparation">Максимально допустимая количество применений препарата, событий в сутки</label>
+				<input type="number" class="form-control" name="maxValueApplicationPreparation" required [(ngModel)]="preparation.maxValueApplicationPreparation" #maxValueApplicationPreparation="ngModel" step="any">
+			</div>
 
-		<div *ngIf="profitable" class="form-group">
-			<label for="price">Цена упаковки препарата, рублей</label>
-			<input type="number" class="form-control" name="price" required [(ngModel)]="preparation.price" #price="ngModel" step="any">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="maxDose">Максимально допустимая разовая доза примененного препарата, в используемых единицах</label>
+				<input type="number" class="form-control" name="maxDose" required [(ngModel)]="preparation.maxDose" #maxDose="ngModel" step="any">
+			</div>
 
+			<div *ngIf="profitable" class="form-group col-md-6">
+				<label class="form__label" for="valueInDose">Количество действующего вещества в отдельной дозе препарата, в используемых единицах</label>
+				<input type="number" class="form-control" name="valueInDose" required [(ngModel)]="preparation.valueInDose" #valueInDose="ngModel" step="any">
+			</div>
 
-		<div *ngIf="profitable" class="form-group">
-			<label for="valueInDose">Количество действующего вещества в отдельной дозе препарата, в используемых единицах</label>
-			<input type="number" class="form-control" name="valueInDose" required [(ngModel)]="preparation.valueInDose" #valueInDose="ngModel" step="any">
-		</div>
+			<div *ngIf="profitable" class="form-group col-md-6">
+				<label class="form__label" for="valueInDoseDay">Количество действующего вещества в применяемой суточной дозе препарата в используемых единицах</label>
+				<input type="number" class="form-control" name="valueInDose" required [(ngModel)]="preparation.valueInDoseDay" #valueInDoseDay="ngModel" step="any">
+			</div>
 
-		<div *ngIf="profitable" class="form-group">
-			<label for="valueInDoseDay">Количество действующего вещества в применяемой суточной дозе препарата в используемых единицах</label>
-			<input type="number" class="form-control" name="valueInDose" required [(ngModel)]="preparation.valueInDoseDay" #valueInDoseDay="ngModel" step="any">
+			<div *ngIf="profitable" class="form-group col-md-6">
+				<label class="form__label" for="valueDoseInPack">Количество отдельных доз в упаковке препарата, единиц</label>
+				<input type="number" class="form-control" name="valueDoseInPack" required [(ngModel)]="preparation.valueDoseInPack" #valueDoseInPack="ngModel" step="any">
+			</div>
 		</div>
-
-		<div *ngIf="profitable" class="form-group">
-			<label for="valueDoseInPack">Количество отдельных доз в упаковке препарата, единиц</label>
-			<input type="number" class="form-control" name="valueDoseInPack" required [(ngModel)]="preparation.valueDoseInPack" #valueDoseInPack="ngModel" step="any">
+		<div class="row">
+			<div class="col-md-12">
+				<button [disabled]="!preparationForm.form.valid" type="submit" class="col-md-6 btn btn-success">Продолжить</button>
+				<button type="submit" class="col-md-6 btn btn-success">Пропустить этот раздел и продолжить</button>
+			</div>
 		</div>
-		<button [disabled]="!preparationForm.form.valid" type="submit" class="btn btn-success">Продолжить</button>
-		<button type="submit" class="btn btn-success">Пропустить этот раздел и продолжить</button>
 	</form>
 </div>
 <intervention [hidden]="sentHidden" [valueIntervention1]="valueIntervention1" [profitable]="profitable"></intervention>

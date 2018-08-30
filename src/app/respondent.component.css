@@ -15,5 +15,17 @@
 }
 
 .respondent-sex {
-	margin: 24px 0;
+	margin: 24px 0 0 0;
+}
+
+.form__label {
+	font-size:18px;
+}
+
+body {
+	background: #eaeaea !important;
+}
+
+.btn-success {
+	line-height: 2.7;
 }

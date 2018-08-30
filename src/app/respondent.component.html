@@ -1,44 +1,45 @@
-<div class="container" [hidden]="hidden">
-	{{diagnostic}}
-	<form  class="form-respondent" (ngSubmit)="onSubmit()" #respondentForm="ngForm">
-		<div class="region-respondent form-group">
-			<label for="region">Регион</label>
-			<input type="text" class="form-control" name="region" required [(ngModel)]="respondent.region" #region="ngModel">
-		</div>
+<div class="container section-form" [hidden]="hidden">
+	<form class="form-respondent" (ngSubmit)="onSubmit()" #respondentForm="ngForm">
+		<h3 class="section-title">Данные респондента</h3>
+		<div class="form__content row">
+			<div class="region-respondent form-group col-md-6">
+				<label class="form__label" for="region">Регион</label>
+				<input type="text" class="form-control" name="region" required [(ngModel)]="respondent.region" #region="ngModel">
+			</div>
 
-		<div class="form-group">
-			<label for="settlemen">Населённый пункт</label>
-			<input type="text" class="form-control" name="settlemen" required [(ngModel)]="respondent.settlemen" #settlemen="ngModel">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="settlemen">Населённый пункт</label>
+				<input type="text" class="form-control" name="settlemen" required [(ngModel)]="respondent.settlemen" #settlemen="ngModel">
+			</div>
 
-		<div class="region-organization form-group">
-			<label for="organization">Вид организации, в которой работает исследователь</label>
-			<input type="text" class="form-control" name="organization" required [(ngModel)]="respondent.organization" #organization="ngModel">
-		</div>
+			<div class="region-organization form-group col-md-6">
+				<label class="form__label" for="organization">Вид организации, в которой работает исследователь</label>
+				<input type="text" class="form-control" name="organization" required [(ngModel)]="respondent.organization" #organization="ngModel">
+			</div>
 
-		<div class="form-group respondent-sex">
-			<label for="sex">Пол респондента: </label>
-			<span class="form__sex" *ngFor="let sex of sexs" >
-				<input [value]="sex" type="radio" name="sex"  required [(ngModel)]="respondent.sex"> {{sex}}
-			</span>
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="age">Возраст респондента</label>
+				<input type="number" class="form-control" name="age" required [(ngModel)]="respondent.age" #age="ngModel">
+			</div>
 
-		<div class="form-group">
-			<label for="age">Возраст респондента</label>
-			<input type="number" class="form-control" name="age" required [(ngModel)]="respondent.age" #age="ngModel">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="height">Рост респондента</label>
+				<input type="number" class="form-control" name="height" required [(ngModel)]="respondent.height" #height="ngModel">
+			</div>
 
-		<div class="form-group">
-			<label for="height">Рост респондента</label>
-			<input type="number" class="form-control" name="height" required [(ngModel)]="respondent.height" #height="ngModel">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="weight">Вес респондента</label>
+				<input type="number" class="form-control" name="weight" required [(ngModel)]="respondent.weight" #weight="ngModel">
+			</div>
 
-		<div class="form-group">
-			<label for="weight">Вес респондента</label>
-			<input type="number" class="form-control" name="weight" required [(ngModel)]="respondent.weight" #weight="ngModel">
+			<div class="form-group respondent-sex col-md-12">
+				<label class="form__label" for="sex">Пол респондента: </label>
+				<span class="form__sex" *ngFor="let sex of sexs" >
+					<input [value]="sex" type="radio" name="sex"  required [(ngModel)]="respondent.sex"> {{sex}}
+				</span>
+			</div>
 		</div>
-
-		<button [disabled]="!respondentForm.form.valid" type="submit" class="btn btn-success">Продолжить</button>
+			<button [disabled]="!respondentForm.form.valid" type="submit" class="col-md-12 single-btn btn btn-success">Продолжить</button>
 	</form>
 </div>
 <effect [hidden]="sentShow"></effect>

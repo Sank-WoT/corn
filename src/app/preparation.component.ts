@@ -13,10 +13,13 @@ export class PreparationComponent implements OnInit {
   @Input() valuePreparation: number;
   @Input() profitable: boolean;
   @Input() valueIntervention1: boolean;
+  message: string;
   allPreparation: Preparation[] = [];
   hidden: boolean = false;
   sentHidden: boolean = true; 
-  constructor(private dataSetvice: DataServicePreparation){}
+  constructor(private dataSetvice: DataServicePreparation){
+    this.message = "Осталось добавить";
+  }
   preparation = new Preparation("", "", 0,0,0,0,0,0,0,0);
   get diagnostic() {return JSON.stringify(this.allPreparation);}
   submitted = false;

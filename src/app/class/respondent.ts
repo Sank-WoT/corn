@@ -1,5 +1,6 @@
 import { IRespondent } from "../interface/IRespondent";
 export class Respondent implements IRespondent {
+	id: string;
 	region: string;
 	settlemen: string;
 	organization: string;
@@ -7,7 +8,6 @@ export class Respondent implements IRespondent {
 	age: number;
 	height: number;
 	weight: number;
-	_id: string;
 	constructor(
 	region: string,
 	settlemen: string,

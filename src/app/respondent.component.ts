@@ -30,8 +30,9 @@ export class RespondentComponent {
   }
 
   onSubmit() {
-    this.serverService.setRespondent(this.respondent).subscribe(answer => {this.respondent._id = answer._id; console.log(this.respondent._id)});
-  	this.hidden = true; 0
+    console.log(this.respondent);
+    this.serverService.setRespondent(this.respondent).subscribe(answer => {this.respondent.id = answer; console.log(this.respondent.id)});
+  	this.hidden = true;
   	this.sentShow = false;
     this.dataSetvice.setData(this.respondent);
    }

@@ -20,40 +20,44 @@ const httpOptions = {
 @Injectable()
 export class ServerService {
 	private handleError: HandleError;
+    port: string;
+    ip: string;
 	constructor(private http: HttpClient,  httpErrorHandler: HttpErrorHandler) { 
+        this.port = "3000";
+        this.ip = "localhost";
 		this.handleError = httpErrorHandler.createHandleError('HeroesService');
 	}
 
-	setRespondent (respondent: Respondent): Observable<Respondent> {
-    	return this.http.post<Respondent>("http://localhost:3000/apit", respondent, httpOptions)
+	setRespondent (respondent: Respondent): Observable<string> {
+    	return this.http.post<string>("http://" + this.ip + ":" + this.port + "/apit", respondent, httpOptions)
     	.pipe(
     	);
 	}
 
 	setEffect (effect: Effect): Observable<Effect> {
 		console.log(effect);
-    	return this.http.post<Effect>("http://localhost:3000/api/effect/", effect, httpOptions)
+    	return this.http.post<Effect>("http://" + this.ip + ":" + this.port + "/api/effect/", effect, httpOptions)
     	.pipe(
     	);
 	}
 
 	setPreparation (preparation: Preparation[]): Observable<Preparation[]> {
 		console.log(preparation);
-    	return this.http.post<Preparation[]>("http://localhost:3000/api/preparation/", preparation, httpOptions)
+    	return this.http.post<Preparation[]>("http://" + this.ip + ":" + this.port + "/api/preparation/", preparation, httpOptions)
     	.pipe(
     	);
 	}  
 
 	setIntervention (intervention: Intervention[]): Observable<Intervention[]> {
 		console.log(intervention);
-    	return this.http.post<Intervention[]>("http://localhost:3000/api/intervention/", intervention, httpOptions)
+    	return this.http.post<Intervention[]>("http://"  + this.ip + ":" + this.port + "/api/intervention/", intervention, httpOptions)
     	.pipe(
     	);
 	}  
 
 	setResult (result: ResultPost): Observable<ResultPost> {
 		console.log(result);
-    	return this.http.post<ResultPost>("http://localhost:3000/api/res", result, httpOptions)
+    	return this.http.post<ResultPost>("http://" + this.ip  + ":" + this.port + "/api/res", result, httpOptions)
     	.pipe(
     	);
 	} 

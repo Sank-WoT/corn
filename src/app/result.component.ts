@@ -34,6 +34,8 @@ export class ResultComponent {
 	res = new ResultPost(0, 0, 0);
 	effect: Effect;
 	utility: number = 0;
+	showIntervention = false;
+	showPreparation = false;
 
 	get diagnostic() {return JSON.stringify(this.result);}
 	constructor( private dataServiceEffect: DataServiceEffect, 
@@ -49,18 +51,26 @@ export class ResultComponent {
 		this.allPreparation = this.dataServicePreparation.getData();
 		this.allIntervention = this.dataServiceIntervention.getData();
 		this.effect = this.dataServiceEffect.getData();
-		this.effect.id = this.respondent._id;
+		this.effect.id = this.respondent.id;
 	}
 
 	resultVal() {
 		// добавить id во все препараты
-		for (var i = 0; i < this.allPreparation.length; ++i) {
-			this.allPreparation[i].id = this.respondent._id;
+		if(0 != this.allPreparation.length) {
+			for (var i = 0; i < this.allPreparation.length; ++i) {
+				this.allPreparation[i].id = this.respondent.id;
+			}
+			this.showIntervention = true;
 		}
+
 		// добавить id во все вмешательства
-		for (var i = 0; i < this.allIntervention.length; ++i) {
-			this.allIntervention[i].id = this.respondent._id;
+		if(0 != this.allIntervention.length) {
+			for (var i = 0; i < this.allIntervention.length; ++i) {
+				this.allIntervention[i].id = this.respondent.id;
+			}
+			this.showPreparation = true;
 		}
+		
 		console.log(this.allPreparation[0]);
 		//alculation
 		this.resultSumOnPreparation();
@@ -72,7 +82,7 @@ export class ResultComponent {
 		this.res.resultAdvantage(this.res.baseRationality, this.allF);
 		this.res.resultRationality(this.res.baseRationality);
 		// добавить id
-		this.res.id = this.respondent._id;
+		this.res.id = this.respondent.id;
 		this.Info /= this.resultMed(this.Info, this.allPreparation.length);
 		this.frugality /= this.resultMed(this.frugality, this.allPreparation.length);
 		this.M /= this.resultMed(this.M, this.allPreparation.length);
@@ -87,9 +97,9 @@ export class ResultComponent {
 		this.serverService.setIntervention(this.allIntervention).subscribe(respondent => console.log(this.allIntervention));
 		this.serverService.setResult(this.res).subscribe(respondent => console.log(this.res));
 	}
-
+	
+	// object save for send on server
 	report() {
-		// object save for send on server
 		this.result.effect = this.effect;
 		this.result.intervention = this.allIntervention;
 		this.result.preparation = this.allPreparation;

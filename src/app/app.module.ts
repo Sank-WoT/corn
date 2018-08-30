@@ -14,7 +14,7 @@ import { EffectComponent } from './effect.component';
 import { PreparationComponent } from './preparation.component';
 import { InterventionComponent } from './intervention.component';
 import { ResultComponent } from './result.component';
-
+import { NoticeComponent } from "./notice.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { ResultComponent } from './result.component';
     EffectComponent,
     PreparationComponent,
     InterventionComponent,
-    ResultComponent
+    ResultComponent,
+    NoticeComponent
   ],
   imports: [
     BrowserModule,

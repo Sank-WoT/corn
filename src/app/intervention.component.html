@@ -1,40 +1,44 @@
 <div class="container" [hidden]="hidden">
-	<h3>Форма 4</h3>
-	<p>Осталось добавить {{valueIntervention1}} вмешательст</p>
 	<form (ngSubmit)="onSubmit()" #interventionForm="ngForm">
-		{{diagnostic}}
-		<div class="form-group">
-			<label for="nameIntervention">Наименование вмешательства</label>
-			<input type="text" class="form-control" name="nameIntervention" required [(ngModel)]="intervention.nameIntervention" #nameIntervention="ngModel">
-		</div>
+		<h3 class="section-title">Данные вмешательста</h3>
+		<p class="form__notice">Осталось добавить {{valueIntervention1}} вмешательст</p>
+		<div class="form__content row">
+			<div class="form-group col-md-6">
+				<label class="form__label" for="nameIntervention">Наименование вмешательства</label>
+				<input type="text" class="form-control" name="nameIntervention" required [(ngModel)]="intervention.nameIntervention" #nameIntervention="ngModel">
+			</div>
 
-		<div *ngIf="profitable" class="form-group">
-			<label for="kommerceNameIntervention">Коммерческое наименование вмешательства (при наличии)</label>
-			<input type="text" class="form-control" name="kommerceNameIntervention" required [(ngModel)]="intervention.kommerceNameIntervention" #kommerceNameIntervention="ngModel">
-		</div>
+			<div *ngIf="profitable" class="form-group col-md-6">
+				<label class="form__label" for="kommerceNameIntervention">Коммерческое наименование вмешательства (при наличии)</label>
+				<input type="text" class="form-control" name="kommerceNameIntervention" required [(ngModel)]="intervention.kommerceNameIntervention" #kommerceNameIntervention="ngModel">
+			</div>
 
-		<div class="form-group">
-			<label for="valueIntervention">Количество применений нелекарственного вмешательства, событий всего</label>
-			<input type="number" step="any" class="form-control" name="valueIntervention" required [(ngModel)]="intervention.valueIntervention" #valueIntervention="ngModel">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="valueIntervention">Количество применений нелекарственного вмешательства, событий всего</label>
+				<input type="number" step="any" class="form-control" name="valueIntervention" required [(ngModel)]="intervention.valueIntervention" #valueIntervention="ngModel">
+			</div>
 
-		<div class="form-group">
-			<label for="refereceValueIntervention">Эталонное (установленное) количество применений нелекарственного вмешатльства</label>
-			<input type="number" step="any" class="form-control" name="refereceValueIntervention" required [(ngModel)]="intervention.refereceValueIntervention" #refereceValueIntervention="ngModel">
-		</div>
+			<div class="form-group col-md-6">
+				<label class="form__label" for="refereceValueIntervention">Эталонное (установленное) количество применений нелекарственного вмешатльства</label>
+				<input type="number" step="any" class="form-control" name="refereceValueIntervention" required [(ngModel)]="intervention.refereceValueIntervention" #refereceValueIntervention="ngModel">
+			</div>
 
-		<div *ngIf="profitable" class="form-group">
-			<label for="price">Цена фактического количества применений конкретного нелекарственного вмешательства, рублей</label>
-			<input type="number" step="any" class="form-control" name="price" required [(ngModel)]="intervention.price" #price="ngModel">
-		</div>
+			<div *ngIf="profitable" class="form-group col-md-6">
+				<label class="form__label" for="price">Цена фактического количества применений конкретного нелекарственного вмешательства, рублей</label>
+				<input type="number" step="any" class="form-control" name="price" required [(ngModel)]="intervention.price" #price="ngModel">
+			</div>
 
-		<div *ngIf="profitable" class="form-group">
-			<label for="priceReference">Цена эталонного (установленного) количества применений нелекарственного вмешательства, рублей</label>
-			<input type="number" step="any" class="form-control" name="priceReference" required [(ngModel)]="intervention.priceReference" #priceReference="ngModel">
+			<div *ngIf="profitable" class="form-group col-md-6">
+				<label class="form__label" for="priceReference">Цена эталонного (установленного) количества применений нелекарственного вмешательства, рублей</label>
+				<input type="number" step="any" class="form-control" name="priceReference" required [(ngModel)]="intervention.priceReference" #priceReference="ngModel">
+			</div>
 		</div>
-
-		<button  [disabled]="!interventionForm.form.valid" type="submit" class="btn btn-success">Продолжить</button>
-		<button type="submit" class="btn btn-success">Пропустить этот раздел и продолжить</button>
+		<div class="row">
+			<div class="col-md-12">
+				<button  [disabled]="!interventionForm.form.valid" type="submit" class="btn btn-success col-md-6">Продолжить</button>
+				<button type="submit" class="btn btn-success col-md-6">Пропустить этот раздел и продолжить</button>
+			</div>
+		</div>
 	</form>
 </div>
 <result #ResultComponent [hidden]="sentHidden"></result>

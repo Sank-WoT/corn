@@ -1,47 +1,49 @@
 <div class="container" [hidden]="hidden">
-	<h3>Форма 2</h3>
 	<form (ngSubmit)="onSubmit()" #effectForm="ngForm">
-		{{diagnostic}}
-		<div>
-			
-		</div>
-		<div class="form-group">
-			<label for="effect">Эффективность</label>
-			<input type="number" class="form-control" name="effect" required [(ngModel)]="effects.effect" #effect="ngModel" step="any">
+		<h3 class="section-title">Данные для расчета рациональности и эффективности</h3>
+		<div class="form__content row">
+			<div class="form-group col-md-6">
+				<label class="form__label" for="oNeg">Ранговое значение контролируемого объективного негативного критерия (группы критериев)</label>
+				<input type="number" class="form-control" name="settlemen" required [(ngModel)]="effects.oNeg" #oNeg="ngModel" step="any">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="form__label" for="oPos">Ранговое значение контролируемого объективного позитивного критерия (группы критериев)</label>
+				<input type="number" class="form-control" name="oPos" required [(ngModel)]="effects.oPos" #oPos="ngModel" step="any">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="form__label" for="sNeg">Ранговое значение контролируемого объективного негативного критерия (группы критериев)</label>
+				<input type="number" class="form-control" name="sNeg" required [(ngModel)]="effects.sNeg" #sNeg="ngModel" step="any">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="form__label" for="sPos">Ранговое значение контролируемого объективного позитивного критерия (группы критериев)</label>
+				<input type="number" class="form-control" name="sPos" required [(ngModel)]="effects.sPos" #sPos="ngModel" step="any">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="form__label" for="valuePreparation">Общее количество наименований применённых препаратов, всего</label>
+				<input type="number" class="form-control" name="height" required [(ngModel)]="effects.valuePreparation" #valuePreparation="ngModel" step="any">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="form__label" for="valueNoPreparation">Общее количество наименований применённых нелекарственных вмешательств, всего</label>
+				<input type="number" class="form-control" name="weight" required [(ngModel)]="effects.valueNoPreparation" #valueNoPreparation="ngModel" step="any">
+			</div>
+
+			<div class="form-group col-md-6">
+				<label class="form__label" for="effect">Эффективность</label>
+				<input type="number" class="form-control" name="effect" required [(ngModel)]="effects.effect" #effect="ngModel" step="any">
+			</div>
 		</div>
 
-		<div class="form-group">
-			<label for="oNeg">Ранговое значение контролируемого объективного негативного критерия (группы критериев)</label>
-			<input type="number" class="form-control" name="settlemen" required [(ngModel)]="effects.oNeg" #oNeg="ngModel" step="any">
+		<div class="row">
+			<div class="col-md-12">
+				<button (click)="onProfitable()" [disabled]="!effectForm.form.valid" type="submit" class="btn btn-success col-md-6">Рассчитать рациональность</button>
+				<button  [disabled]="!effectForm.form.valid" type="submit" class="btn btn-success col-md-6">Рассчитать рациональность и выгодность</button>
+			</div>
 		</div>
-
-		<div class="form-group">
-			<label for="oPos">Ранговое значение контролируемого объективного позитивного критерия (группы критериев)</label>
-			<input type="number" class="form-control" name="oPos" required [(ngModel)]="effects.oPos" #oPos="ngModel" step="any">
-		</div>
-
-		<div class="form-group">
-			<label for="sNeg">Ранговое значение контролируемого объективного негативного критерия (группы критериев)</label>
-			<input type="number" class="form-control" name="sNeg" required [(ngModel)]="effects.sNeg" #sNeg="ngModel" step="any">
-		</div>
-
-		<div class="form-group">
-			<label for="sPos">Ранговое значение контролируемого объективного позитивного критерия (группы критериев)</label>
-			<input type="number" class="form-control" name="sPos" required [(ngModel)]="effects.sPos" #sPos="ngModel" step="any">
-		</div>
-
-		<div class="form-group">
-			<label for="valuePreparation">Общее количество наименований применённых препаратов, всего</label>
-			<input type="number" class="form-control" name="height" required [(ngModel)]="effects.valuePreparation" #valuePreparation="ngModel" step="any">
-		</div>
-
-		<div class="form-group">
-			<label for="valueNoPreparation">Общее количество наименований применённых нелекарственных вмешательств, всего</label>
-			<input type="number" class="form-control" name="weight" required [(ngModel)]="effects.valueNoPreparation" #valueNoPreparation="ngModel" step="any">
-		</div>
-
-		<button (click)="onProfitable()" [disabled]="!effectForm.form.valid" type="submit" class="btn btn-success">Рассчитать рациональность</button>
-		<button  [disabled]="!effectForm.form.valid" type="submit" class="btn btn-success">Рассчитать рациональность и выгодность</button>
 	</form>
 </div>
 <preparation [hidden]="sentHidden" [valuePreparation]="effects.valuePreparation" [profitable]="profitable" [valueIntervention1]="effects.valueNoPreparation"></preparation>
